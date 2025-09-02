@@ -1,0 +1,368 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Contact Manager
+  description: This is the API documentation for the COP 4331 Small Project
+
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /Login.php:
+    post:
+      tags:
+      - Users
+      summary: Logs into the contact manager app
+      operationId: doLogin
+      parameters:
+      - in: body
+        name: loginItem
+        description: LoginItem
+        required: false
+        schema:
+          $ref: '#/definitions/Login'
+      responses:
+        200:
+          description: OK
+        404:
+          description : URL Not Found
+        500:
+          description: Server Error
+  /AddContact.php:
+    post:
+      tags:
+      - Contacts
+      summary: Adds a contact
+      operationId: addContact
+      description: Adds a new contact to the contact manager app
+      parameters:
+        - in: body
+          name: addContact
+          description: AddContact
+          required: false
+          schema:
+            $ref: '#/definitions/AddContact'
+      responses:
+        201:
+          description: Succeeded
+        404:
+          description: URL Not Found
+        500:
+          description: Server Error
+  /GetContact.php:
+    post:
+      tags:
+      - Contacts
+      summary: Get a single contact by ID
+      operationId: getContact
+      parameters:
+      - in: body
+        name: getContact
+        description: Contact ID to fetch
+        required: true
+        schema:
+          $ref: '#/definitions/GetContactRequest'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/GetContactResponse'
+        404:
+          description: Contact not found
+        500:
+          description: Server Error
+
+  /SearchContact.php:
+    post:
+      tags:
+      - Contacts
+      summary: Search contacts by name or phone
+      operationId: searchContacts
+      parameters:
+      - in: body
+        name: searchContacts
+        description: Search text and pagination
+        required: true
+        schema:
+          $ref: '#/definitions/SearchContactRequest'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/SearchContactResponse'
+        500:
+          description: Server Error
+
+  /Register.php:
+    post:
+      tags:
+      - Users
+      summary: Register a new user
+      operationId: registerUser
+      parameters:
+      - in: body
+        name: registerItem
+        description: Registration payload
+        required: true
+        schema:
+          $ref: '#/definitions/Register'
+      responses:
+        201:
+          description: User created
+          schema:
+            $ref: '#/definitions/RegisterResponse'
+        409:
+          description: Login already exists
+        500:
+          description: Server Error
+
+  /EditContact.php:
+    post:
+      tags:
+      - Contacts
+      summary: Edit an existing contact
+      operationId: editContact
+      parameters:
+      - in: body
+        name: editContact
+        description: Fields to update for the contact
+        required: true
+        schema:
+          $ref: '#/definitions/EditContact'
+      responses:
+        200:
+          description: Updated
+          schema:
+            $ref: '#/definitions/Contact'
+        404:
+          description: Contact not found
+        500:
+          description: Server Error
+
+  /DeleteContact.php:
+    post:
+      tags:
+      - Contacts
+      summary: Delete a contact
+      operationId: deleteContact
+      parameters:
+      - in: body
+        name: deleteContact
+        description: Contact ID to delete
+        required: true
+        schema:
+          $ref: '#/definitions/DeleteContactRequest'
+      responses:
+        200:
+          description: Deleted
+          schema:
+            $ref: '#/definitions/BasicResponse'
+        404:
+          description: Contact not found
+        500:
+          description: Server Error
+
+      
+definitions:
+  Login:
+    type: object
+    required:
+    - login
+    - password
+    properties:
+      login:
+        type: string
+        example: "fred"
+      password:
+        type: string
+        example: "secret"
+  AddContact:
+    type: object
+    required:
+    - firstName
+    - lastName
+    - phoneNumber
+    - dateCreated
+    - UserID
+    properties:
+      firstName:
+        type: string
+        example: "fred"
+      lastName:
+        type: string
+        example: "smith"
+      phoneNumber:
+        type: integer
+      dateCreated:
+        type: string
+        format: date
+      UserID:
+        type: integer
+  Contact:
+    type: object
+    required:
+    - id
+    - firstName
+    - lastName
+    - phoneNumber
+    - dateCreated
+    - userId
+    properties:
+      id:
+        type: integer
+        format: int32
+        example: 123
+      firstName:
+        type: string
+        example: "Fred"
+      lastName:
+        type: string
+        example: "Smith"
+      # Tip: phone numbers often work better as string to preserve leading zeros and symbols.
+      phoneNumber:
+        type: integer
+        example: 5551234
+      dateCreated:
+        type: string
+        format: date
+        example: "2025-09-01"
+      userId:
+        type: integer
+        format: int32
+        example: 42
+
+  GetContactRequest:
+    type: object
+    required:
+    - contactId
+    properties:
+      contactId:
+        type: integer
+        format: int32
+        example: 123
+
+  GetContactResponse:
+    type: object
+    required:
+    - contact
+    properties:
+      contact:
+        $ref: '#/definitions/Contact'
+
+  SearchContactRequest:
+    type: object
+    required:
+    - search
+    properties:
+      search:
+        type: string
+        description: Text to search (first/last/phone)
+        example: "fred"
+      page:
+        type: integer
+        format: int32
+        default: 1
+      pageSize:
+        type: integer
+        format: int32
+        default: 25
+
+  SearchContactResponse:
+    type: object
+    required:
+    - results
+    - total
+    properties:
+      total:
+        type: integer
+        format: int32
+        example: 3
+      results:
+        type: array
+        items:
+          $ref: '#/definitions/Contact'
+
+  Register:
+    type: object
+    required:
+    - login
+    - password
+    properties:
+      login:
+        type: string
+        example: "newuser"
+      password:
+        type: string
+        example: "secret"
+      firstName:
+        type: string
+        example: "Alice"
+      lastName:
+        type: string
+        example: "Doe"
+      email:
+        type: string
+        format: email
+        example: "alice@example.com"
+
+  RegisterResponse:
+    type: object
+    required:
+    - userId
+    - login
+    properties:
+      userId:
+        type: integer
+        format: int32
+        example: 77
+      login:
+        type: string
+        example: "newuser"
+
+  EditContact:
+    type: object
+    required:
+    - contactId
+    properties:
+      contactId:
+        type: integer
+        format: int32
+        example: 123
+      firstName:
+        type: string
+        example: "Frederick"
+      lastName:
+        type: string
+        example: "Smith"
+      phoneNumber:
+        type: integer
+        example: 5559876
+      # If you also update date fields, keep the same format rules
+      dateCreated:
+        type: string
+        format: date
+
+  DeleteContactRequest:
+    type: object
+    required:
+    - contactId
+    properties:
+      contactId:
+        type: integer
+        format: int32
+        example: 123
+
+  BasicResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: "OK"
+
+    
+  
+host: cop-433121.com
+basePath: /API
+schemes:
+- http
