@@ -13,7 +13,7 @@
     else
     {
         //Test if user exist
-        $stmt = $conn->prepare("SELECT ID, firstName, lastName FROM Users WHERE login=? ");
+        $stmt = $conn->prepare("SELECT ID, firstName, lastName FROM Users WHERE Login=? ");
         $stmt->bind_param("s", $inData["login"]);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -21,16 +21,18 @@
         {
             returnWithError("Username already exists");
         }
-        else if($result === false)
+        else if(!$result)
         {
             returnWithError($stmt->error);
         }else
         {
-            $stmt = $conn->prepare("INSERT INTO Users (firstName, lastName, login, password) VALUES (?, ?, ?, ?)");
-            $stmt->bind_param("ssss", $inData["firstName"], $inData["lastName"], $inData["login"], $inData["password"]);
-	    if($stmt->execute()){
+            $stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Login, Password) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $inData["login"], $inData["password"], $inData["firstName"], $inData["lastName"]);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if($row = $result->fetch_assoc()){
                 $last_id = $conn->insert_id;
-                returnWithInfo($inData['firstName'], $inData['lastName'], $last_id);
+                returnWithInfo($row['firstName'], $row['lastName'], $last_id);
             }else
             {
                 returnWithError($conn->error);
