@@ -1,31 +1,23 @@
 <?php
-
     $inData = getRequestInfo();
     $firstName = "";
     $lastName = "";
 
     $conn = new mysqli("localhost", "javier", "iHde7TXpmD", "Small_Project");
-    if($conn->connect_error)
-    {
+    if($conn->connect_error){
         returnWithError($conn->connect_error);
-    }
-    else
-    {
-        $stmt = $conn->prepare("SELECT ID, firstName, lastName FROM Users WHERE Login=? AND Password =?");
-        $stmt->bind_param("ss", $inData["login"], $inData["password"]);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if($row = $result->fetch_assoc())
-        {
-            returnWithInfo($row['firstName'], $row['lastName'], $row['ID']);
+    }else{
+        $stmt = $conn->prepare("INSERT INTO Contacts (firstName, lastName, phoneNumber, email, address, dateCreated, userID) VALUES (? ,? ,? ,? ,?,CURRENT_DATE(), ?)");
+        $stmt->bind_param("ssissi", $inData["firstName"], $inData["lastName"], $inData["phoneNumber"], $inData["email"], $inData["address"], $inData["userID"]);
+        if($stmt->execute()){
+            $last_id =$conn->insert_id;
+            returnWithInfo($inData["firstName"], ["lastName"], $last_id);
+        }else{
+            returnWithError($stmt->error);
         }
-        else
-        {
-            returnWithError("No Records Found");
-        }
-        $stmt->close();
-        $conn->close();
     }
+    $stmt->close();
+    $conn->close();
 
 
     function getRequestInfo(){
@@ -47,5 +39,4 @@
 		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
-
 ?>
