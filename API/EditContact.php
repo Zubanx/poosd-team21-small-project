@@ -1,23 +1,19 @@
 <?php
-    $inData = getRequestInfo();
-    $firstName = "";
-    $lastName = "";
 
+    $inData = getRequestInfo();
     $conn = new mysqli("localhost", "javier", "iHde7TXpmD", "Small_Project");
     if($conn->connect_error){
-        returnWithError($conn->connect_error);
+        returnWithError(conn->connect_error);
     }else{
-        $stmt = $conn->prepare("INSERT INTO Contacts (firstName, lastName, phoneNumber, email, address, dateCreated, userID) VALUES (? ,? ,? ,? ,?,CURRENT_DATE(), ?)");
-        $stmt->bind_param("ssissi", $inData["firstName"], $inData["lastName"], $inData["phoneNumber"], $inData["email"], $inData["address"], $inData["userID"]);
+        $stmt = $conn->prepare("UPDATE Contacts SET firstName = ?, lastName = ?, phoneNumber = ?, email = ?, address = ? WHERE ID = ?");
+        $stmt->bind_param("ssisss", $inData["firstName"], $inData["lastName"], $inData["phoneNumber"], $inData["email"], $inData["address"], $inData["ID"]);
         if($stmt->execute()){
-            $last_id =$conn->insert_id;
-            returnWithInfo($inData["firstName"], $inData["lastName"], $last_id);
+            returnWithInfo($inData["firstName"],$inData["lastName"],$inData["ID"]);
         }else{
             returnWithError($stmt->error);
         }
     }
-    $stmt->close();
-    $conn->close();
+
 
 
     function getRequestInfo(){
