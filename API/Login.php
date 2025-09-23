@@ -4,14 +4,14 @@
     $firstName = "";
     $lastName = "";
 
-    $conn = new mysqli("localhost", "javier", "iHde7TXpmD", "Small_Project");
+    $conn = new mysqli("localhost", "admin", "smallProjectUser", "Small_Project");
     if($conn->connect_error)
     {
         returnWithError($conn->connect_error);
     }
     else
     {
-        $stmt = $conn->prepare("SELECT ID, firstName, lastName FROM Users WHERE Login=? AND Password =?");
+        $stmt = $conn->prepare("SELECT ID, firstName, lastName FROM Users WHERE login=? AND password =?");
         $stmt->bind_param("ss", $inData["login"], $inData["password"]);
         $stmt->execute();
         $result = $stmt->get_result();

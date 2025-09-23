@@ -5,7 +5,7 @@
     $lastName = "";
 
 
-    $conn = new mysqli("localhost", "javier", "iHde7TXpmD", "Small_Project");
+    $conn = new mysqli("localhost", "admin", "smallProjectUser", "Small_Project");
     if($conn->connect_error)
     {
         returnWithError($conn->connect_error);
@@ -13,33 +13,26 @@
     else
     {
         //Test if user exist
-        $stmt = $conn->prepare("SELECT ID, firstName, lastName FROM Users WHERE Login=? ");
+        $stmt = $conn->prepare("SELECT ID, firstName, lastName FROM Users WHERE login=? ");
         $stmt->bind_param("s", $inData["login"]);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if($result->num_rows > 0)
-        {
-            returnWithError("Username already exists");
-        }
-        else if(!$result)
-        {
-            returnWithError($stmt->error);
-        }else
-        {
-            $stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Login, Password) VALUES (?, ?, ?, ?)");
-            $stmt->bind_param("ssss", $inData["login"], $inData["password"], $inData["firstName"], $inData["lastName"]);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            if($row = $result->fetch_assoc()){
-                $last_id = $conn->insert_id;
-                returnWithInfo($row['firstName'], $row['lastName'], $last_id);
-            }else
-            {
-                returnWithError($conn->error);
-            }
-        }
-        $stmt->close();
-        $conn->close();
+	if(!$stmt->execute()){
+		returnWithError($stmt->error);
+	}else{
+		$result = $stmt->get_result();
+		if($result->num_rows > 0){
+            		returnWithError("Username already exists");
+        	}else{
+            		$stmt = $conn->prepare("INSERT INTO Users (firstName, lastName, login, password) VALUES (?, ?, ?, ?)");
+            		$stmt->bind_param("ssss", $inData["firstName"], $inData["lastName"], $inData["login"], $inData["password"]);
+	    		if(!$stmt->execute()){
+		    		returnWithError($stmt->error);
+	    		}
+			else{
+                		$last_id = $conn->insert_id;
+                		returnWithInfo($inData['firstName'], $inData['lastName'], $last_id);
+	    		}
+		}
+    	}
     }
 
 

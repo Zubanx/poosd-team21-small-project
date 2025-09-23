@@ -6,7 +6,7 @@
     $searchCount = 0;
     $searchResults ="";
 
-    $conn = new mysqli("localhost", "javier", "iHde7TXpmD", "Small_Project");
+    $conn = new mysqli("localhost", "admin", "smallProjectUser", "Small_Project");
     if($conn->connect_error){
         returnWithError($conn->connect_error);
     }else
@@ -22,7 +22,7 @@
                                         $searchResults .= ",";
                                 }
                                 $searchCount++;
-                                $searchResults .= '{"ID":"' . $row["ID"] . '",' .  '"First Name":"' . $row["firstName"] . '",' .  '"Last Name":"' . $row["lastName"] . '",' .  '"Number":"' . $row["phoneNumber"] . '",' .  '"Email":"' . $row["email"] . '",' .  '"Address":"' . $row["address"] . '",' .  '"Date":"' . $row["dateCreated"] . '"}';
+                                $searchResults .= '{"ID":"' . $row["ID"] . '",' .  '"First Name":"' . $row["firstName"] . '",' .  '"Last Name":"' . $row["lastName"] . '",' .  '"Number":"' . $row["phoneNumber"] . '",' .  '"Email":"' . $row["email"] . '",' .  '"Address":"' . $row["address"] . '",' .  '"Date":"' . $row["timestamp"] . '"}';
 			}
 		}else{
             returnWithError("No Records Found");

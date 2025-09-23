@@ -3,7 +3,7 @@
     $inData = getRequestInfo();
     $firstName = "";
     $lastName = "";
-    $conn = new mysqli("localhost", "javier", "iHde7TXpmD", "Small_Project");
+    $conn = new mysqli("localhost", "admin", "smallProjectUser", "Small_Project");
 
     if($conn->connect_error){
         returnWithError($conn->connect_error);
