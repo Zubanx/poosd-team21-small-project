@@ -16,7 +16,15 @@ if($conn->connect_error){
     $result = $stmt->get_result();
     if($row = $result->fetch_assoc())
     {
-        $searchResults = '{"id":' . $row["ID"] . ',"firstName":"' . $row["firstName"] . '","lastName":"' . $row["lastName"] . ',"phone":"' . $row["phone"] . ',"email":"' . $row["email"] . ',"timestamp":"' . $row["timestamp"] . ',"userID":"' . $row["userID"] . '","error":""}';
+        $searchResults =
+            '{"id":'        . (int)$row["ID"] .
+            ',"firstName":' . json_encode($row["firstName"]) .
+            ',"lastName":'  . json_encode($row["lastName"])  .
+            ',"phone":'     . json_encode($row["phone"])     .
+            ',"email":'     . json_encode($row["email"])     .
+            ',"timestamp":' . json_encode($row["timestamp"]) .
+            ',"userID":'    . (int)$row["userID"] .
+            ',"error":""}';
         returnWithInfo($searchResults);
     } else {
         returnWithError("No Records Found");
