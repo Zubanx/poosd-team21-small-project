@@ -9,11 +9,10 @@ if($conn->connect_error)
 {
     returnWithError($conn->connect_error);
 } else {
-    $stmt = $conn->prepare("UPDATE Contacts SET firstName = ?, lastName = ?, phone = ?, email = ? WHERE id = ?");
-    $stmt->bind_param("ssss", $inData["firstName"], $inData["lastName"],  $inData["phone"], $inData["email"]);
+    $stmt = $conn->prepare("UPDATE Contacts SET firstName = ?, lastName = ?, phone = ?, email = ? WHERE ID = ?");
+    $stmt->bind_param("ssssi", $inData["firstName"], $inData["lastName"],  $inData["phone"], $inData["email"], $inData["id"]);
     if($stmt->execute()){
-        $last_id = $conn->insert_id;
-        returnWithInfo($inData["firstName"], $inData["lastName"], $last_id);
+        returnWithInfo($inData["firstName"], $inData["lastName"], $inData["id"]);
     } else {
         returnWithError($stmt->error);
     }
