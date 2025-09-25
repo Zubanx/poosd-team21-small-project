@@ -9,7 +9,7 @@ if($conn->connect_error)
 {
     returnWithError($conn->connect_error);
 } else {
-    $stmt = $conn->prepare("INSERT INTO Contacts (ID, firstName, lastName, phone, email, timestamp, userID) VALUES (?, ?, ?, ?, ?, CURRENT_DATE(), ?)");
+    $stmt = $conn->prepare("INSERT INTO Contacts (firstName, lastName, phone, email, userID) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("ssssi", $inData["firstName"], $inData["lastName"],  $inData["phone"], $inData["email"], $inData["userID"]);
     if($stmt->execute()){
         $last_id = $conn->insert_id;
