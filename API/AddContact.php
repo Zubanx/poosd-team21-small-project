@@ -9,7 +9,7 @@
     {
         returnWithError($conn->connect_error);
     } else {
-        $stmt = $conn->prepare("INSERT INTO Contacts (firstName, lastName, email, phoneNumber, address, userID) VALUES (?, ?, ?, ?, ?, ?) WHERE userID = ?");
+        $stmt = $conn->prepare("INSERT INTO Contacts (firstName, lastName, email, phoneNumber, address, userID) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("sssssi", $inData["firstName"], $inData["lastName"], $inData["email"], $inData["phoneNumber"], $inData["address"], $inData["userID"]);
         if($stmt->execute()){
             $last_id = $conn->insert_id;
