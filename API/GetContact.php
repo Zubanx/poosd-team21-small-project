@@ -16,7 +16,7 @@ if($conn->connect_error){
     $result = $stmt->get_result();
     if($row = $result->fetch_assoc())
     {
-        $searchResults .= '"id":"' . $row["id"] . '",' .  '"firstName":"' . $row["firstName"] . '",' .  '"lastName":"' . $row["lastName"] . '",' .  '"phone":"' . $row["phone"] . '",' .  '"email":"' . $row["email"] . '",' . '"timestamp":"' . $row["timestamp"] . '"';
+        $searchResults = '{"id":' . $row["id"] . ',"firstName":"' . $row["firstName"] . '","lastName":"' . $row["lastName"] . ',"phone":"' . $row["phone"] . ',"email":"' . $row["email"] . ',"timestamp":"' . $row["timestamp"] . ',"userID":"' . $row["userID"] . '","error":""}'
         returnWithInfo($searchResults);
     } else {
         returnWithError("No Records Found");
@@ -40,7 +40,7 @@ function returnWithError( $err )
 }
 function returnWithInfo( $searchResults )
 {
-    $retValue = '{' $searchResults ',"error":""}';
+    $retValue = $searchResults;
     sendResultInfoAsJson($retValue);
 }
 ?>
