@@ -16,19 +16,11 @@ if($conn->connect_error){
     $result = $stmt->get_result();
     if($row = $result->fetch_assoc())
     {
-        $searchResults = [
-            "ID"        => (int)$row["ID"],
-            "firstName" => $row["firstName"],
-            "lastName"  => $row["lastName"],
-            "phone"     => $row["phone"],
-            "email"     => $row["email"],
-            "timestamp" => $row["timestamp"]
-        ];
+        $searchResults .= '{"id":"' . $row["id"] . '",' .  '"firstName":"' . $row["firstName"] . '",' .  '"lastName":"' . $row["lastName"] . '",' .  '"phone":"' . $row["phone"] . '",' .  '"email":"' . $row["email"] . '",' . '"timestamp":"' . $row["timestamp"] . '"}';
         returnWithInfo($searchResults);
     } else {
         returnWithError("No Records Found");
     }
-    $stmt->close();
     $conn->close();
 }
 
@@ -48,7 +40,7 @@ function returnWithError( $err )
 }
 function returnWithInfo( $searchResults )
 {
-    $retValue = ["results" => [$searchResults], "error" => ""];
-    sendResultInfoAsJson(json_encode($retValue));
+    $retValue = '{' . $searchResults . ', "error":" "}';
+    sendResultInfoAsJson($retValue);
 }
 ?>
