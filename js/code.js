@@ -28,16 +28,16 @@ function doLogin() {
 	let url = urlBase + '/Login.' + extension;
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, false);
+    xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
+    xhr.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             let jsonObject = JSON.parse(xhr.responseText);
             if (jsonObject.error !== "") {
                 document.getElementById("loginResult").innerHTML = jsonObject.error;
                 return;
-            }   
-            
+            }
+
             userId = jsonObject.id;
             firstName = jsonObject.firstName;
             lastName = jsonObject.lastName;
@@ -51,6 +51,7 @@ function doLogin() {
 			document.getElementById("loginResult").innerText = "Login request failed (status " + this.status + ")";
             console.error(xhr.responseText);
 		}
+    };
 	
 	xhr.onerror = function() {
 		document.getElementById("loginResult").innerText = "Network error. Check API URL or CORS.";
