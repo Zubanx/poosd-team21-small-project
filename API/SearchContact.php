@@ -25,7 +25,8 @@
                                 $searchResults .= '{"ID":"' . $row["ID"] . '",' .  '"First Name":"' . $row["firstName"] . '",' .  '"Last Name":"' . $row["lastName"] . '",' .  '"Number":"' . $row["phoneNumber"] . '",' .  '"Email":"' . $row["email"] . '",' .  '"Date":"' . $row["timestamp"] . '"}';
 			}
 		}else{
-            returnWithError("No Records Found");
+			returnWithError("No Records Found");
+			return;
         }
         $conn->close();
     }
