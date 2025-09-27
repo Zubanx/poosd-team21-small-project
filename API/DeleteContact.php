@@ -1,7 +1,4 @@
-/*DeleteContact.php */
-
 <?php
-
     $inData = getRequestInfo();
     $firstName = "";
     $lastName = "";

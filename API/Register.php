@@ -1,4 +1,3 @@
-/**Register.php */
 <?php
 
     $inData = getRequestInfo();

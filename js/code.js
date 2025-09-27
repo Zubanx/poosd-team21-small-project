@@ -1,6 +1,6 @@
 const urlBase = 'http://159.65.246.16/API';
 const extension = 'php';
-
+    
 let userId = 0;
 let firstName = "";
 let lastName = "";
@@ -21,25 +21,23 @@ function doLogin() {
     	document.getElementById("loginResult").innerText = "Please enter username and password";
  		return;
 	}
-
-	
+    
     let tmp = { login: login, password: password };
     let jsonPayload = JSON.stringify(tmp);
 
 	let url = urlBase + '/Login.' + extension;
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
+    xhr.open("POST", url, false);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    xhr.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             let jsonObject = JSON.parse(xhr.responseText);
             if (jsonObject.error !== "") {
                 document.getElementById("loginResult").innerHTML = jsonObject.error;
                 return;
-            }
-
+            }   
+            
             userId = jsonObject.id;
             firstName = jsonObject.firstName;
             lastName = jsonObject.lastName;
@@ -53,7 +51,6 @@ function doLogin() {
 			document.getElementById("loginResult").innerText = "Login request failed (status " + this.status + ")";
             console.error(xhr.responseText);
 		}
-    };
 	
 	xhr.onerror = function() {
 		document.getElementById("loginResult").innerText = "Network error. Check API URL or CORS.";
@@ -73,12 +70,11 @@ function doRegister() {
     let jsonPayload = JSON.stringify(tmp);
 
     let url = urlBase + '/Register.' + extension;
-
+    
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    xhr.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             let jsonObject = JSON.parse(xhr.responseText);
             if (jsonObject.error !== "") {
@@ -96,7 +92,6 @@ function doRegister() {
 
             window.location.href = "dashboard.html";
         }
-    };
     xhr.send(jsonPayload);
 }
 
