@@ -23,7 +23,7 @@ body
     font-family: "Special Gothic Condensed One", sans-serif;
     font-weight: 750;
     text-align: center;
-    margin-bottom: 30px; /* smaller space */
+    margin-bottom: 20px; /* smaller space */
     font-style: normal;
     color: #000000;
 }
@@ -42,7 +42,6 @@ body
     box-shadow: 0 0 40px rgba(0,0,0, 0.5);
     text-align: center;
 }
-
 
 /*loggedin boxes*/
 #loggedInDiv
@@ -148,13 +147,11 @@ input[type="text"],input[type="password"]{
 
 #loginResult{
     display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
+    font-size: 30px;    
     text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Montserrat', sans-serif;
-    color: #b62126;
+    font-family: 'Special Gothic Condensed One', sans-serif;
+    text-shadow: 2px 2px 15px #ff006a;
+    color: #ff627df8;
 }
 
 #signUpInfo{

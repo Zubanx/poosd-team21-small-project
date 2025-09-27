@@ -2,62 +2,65 @@ const urlBase = 'http://159.65.246.16/API';
 const extension = 'php';
 
 function doRegister() {
-
-    let firstName = document.getElementById("regFirstName").value.trim();
-    let lastName = document.getElementById("regLastName").value.trim();
-    let login = document.getElementById("regLogin").value.trim();
-    let password = document.getElementById("regPassword").value.trim();
-
+    const firstName = document.getElementById("reigsterFirstName").value.trim();
+    const lastName = document.getElementById("registerLastName").value.trim();
+    const login = document.getElementById("registerLogin").value.trim();
+    const password = document.getElementById("registerPassword").value.trim();
     const resultDiv = document.getElementById("registerResult");
+
     resultDiv.innerText = "";
-    
-        // Input validation
+
+    // Input validation
     if (!firstName || !lastName || !login || !password) {
         resultDiv.innerText = "All fields are required!";
         return;
     }
 
-    // let hash = md5(password);
-
-    let tmp = {
-        firstName: document.getElementById("registerFirstName").value.trim(),
-        lastName: document.getElementById("registerLastName").value.trim(),
-        login: document.getElementById("registerLogin").value.trim(),
-        password: document.getElementById("registerPassword").value.trim()
+    const payload = {
+        firstName: firstName,
+        lastName: lastName,
+        login: login,
+        password: password
     };
 
-    let jsonPayload = JSON.stringify(tmp);
+    const jsonPayload = JSON.stringify(payload);
+    const url = `${urlBase}/Register.${extension}`;
 
-    let url = urlBase + '/Register.' + extension;
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, false);
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true); // async
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-        if (this.readyState === 4 && this.status === 200) {
-            let jsonObject = JSON.parse(xhr.responseText);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            try {
+                const jsonObject = JSON.parse(xhr.responseText);
 
-            if (jsonObject.error !== "") {
-                document.getElementById("registerResult").innerText = jsonObject.error;
-                return;
+                if (jsonObject.error && jsonObject.error !== "") {
+                    resultDiv.innerText = jsonObject.error;
+                    return;
+                }
+
+                // store session info
+                localStorage.setItem("userId", jsonObject.id);
+                localStorage.setItem("firstName", jsonObject.firstName);
+                localStorage.setItem("lastName", jsonObject.lastName);
+                
+                // redirect to dashboard
+                window.location.href = "dashboard.html";
+            } catch (e) {
+                resultDiv.innerText = "Invalid response from server.";
+                console.error(e, xhr.responseText);
             }
-
-            // store session info
-            localStorage.setItem("userId", jsonObject.id);
-            localStorage.setItem("firstName", jsonObject.firstName);
-            localStorage.setItem("lastName", jsonObject.lastName);
-
-            // redirect to dashboard
-            window.location.href = "dashboard.html";
-        } else{
-            document.getElementById("registerResult").innerText = "Registration request failed (status " + this.status + ")";
+        } else {
+            resultDiv.innerText = `Registration request failed (status ${xhr.status})`;
             console.error(xhr.responseText);
         }
+    };
 
     xhr.onerror = function() {
-    document.getElementById("registerResult").innerText = "Network error. Check API URL or CORS.";
-    console.error("Network error");
-};
+        resultDiv.innerText = "Network error. Check API URL or CORS.";
+        console.error("Network error");
+    };
 
     xhr.send(jsonPayload);
 }

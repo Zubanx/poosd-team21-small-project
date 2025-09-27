@@ -28,7 +28,7 @@ function doLogin() {
 	let url = urlBase + '/Login.' + extension;
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
+    xhr.open("POST", url, false);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhr.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
