@@ -1,4 +1,4 @@
-/*DeleteContact.php */
+
 
 <?php
 

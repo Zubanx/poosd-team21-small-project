@@ -1,4 +1,4 @@
-/*EditContact.php */
+
 
 <?php
 $inData = getRequestInfo();

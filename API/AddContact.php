@@ -1,4 +1,4 @@
-/*AddContact.php */
+
 
 <?php
 $inData = getRequestInfo();
