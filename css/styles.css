@@ -274,3 +274,17 @@ p a:hover{
     text-decoration-color: #ffc400;
     color: #ffc400;
 }
+
+#contactTable button {
+  padding: 4px 10px;
+  margin: 2px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#contactTable button:hover {
+  background-color: #ffc400;
+  color: #000;
+}
+

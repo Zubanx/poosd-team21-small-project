@@ -47,7 +47,8 @@ function doLogin() {
             localStorage.setItem("lastName", lastName);
 
             window.location.href = "dashboard.html";
-        } else{
+        } 
+        else{
 			document.getElementById("loginResult").innerText = "Login request failed (status " + this.status + ")";
             console.error(xhr.responseText);
 		}
