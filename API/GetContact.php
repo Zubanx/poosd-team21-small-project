@@ -1,3 +1,6 @@
+/*GetContact.php */
+
+
 <?php
 
 $inData = getRequestInfo();

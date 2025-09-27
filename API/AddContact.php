@@ -1,3 +1,5 @@
+/*AddContact.php */
+
 <?php
 $inData = getRequestInfo();
 $firstName = "";

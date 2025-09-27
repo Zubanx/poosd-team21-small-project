@@ -1,3 +1,4 @@
+/*SearchContact.php*/
 <?php
 
     $inData = getRequestInfo();

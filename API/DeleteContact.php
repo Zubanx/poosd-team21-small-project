@@ -1,3 +1,5 @@
+/*DeleteContact.php */
+
 <?php
 
     $inData = getRequestInfo();
