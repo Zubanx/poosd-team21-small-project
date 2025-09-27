@@ -1,9 +1,9 @@
-<<<<<<< HEAD
 
 
 
-=======
->>>>>>> refs/remotes/origin/main
+
+
+
 <?php
     $inData = getRequestInfo();
     $firstName = "";
