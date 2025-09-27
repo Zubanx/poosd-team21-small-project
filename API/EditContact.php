@@ -1,8 +1,3 @@
-
-
-
-
-
 <?php
     $inData = getRequestInfo();
     $firstName = "";

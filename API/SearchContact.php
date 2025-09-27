@@ -1,7 +1,3 @@
-
-
-
-
 <?php
 
     $inData = getRequestInfo();
