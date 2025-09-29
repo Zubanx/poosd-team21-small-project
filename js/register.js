@@ -1,4 +1,4 @@
-const urlBase = 'http://159.65.246.16/API';
+const urlBase = 'https://cop-433121.com/API';
 const extension = 'php';
 
 function doRegister() {
