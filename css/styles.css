@@ -35,7 +35,7 @@ body
     color: #000000;
 }
 
-/*title text*/
+/*title2 text*/
 #title2 
 {
     font-size: 50px;
@@ -248,14 +248,16 @@ input[type="text"],input[type="password"]{
 
 #userName{
     display: inline-block;
-    width: 80%;
-    margin-left: 10%;
+    color: #000000;
+    font-size: 35px;
+    font-weight: bold;
+    font-family: "Quantico", sans-serif;
+    width: 100%;
     text-align: center;
 }
 
 #logoutButton{
     width: 20%;
-    margin-left: 40%;
 }
 
 select{
@@ -290,10 +292,41 @@ p a:hover{
   font-size: 14px;
   border-radius: 5px;
   cursor: pointer;
+  color: #000000
+}
+
+#contactTable{
+    color:#000000;
+
+}
+
+#contactTitles{
+    display: inline-block;
+    color: #000000;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Quantico", sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+#searchInput{
+    display: inline-block;
+    color: #000000;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Quantico", sans-serif;
+    width: 20%;
+    margin-bottom: 1%;
+    text-align: center;
+}
+
+#contactForm{
+    size: 50px;
 }
 
 #contactTable button:hover {
-  background-color: #ffc400;
+  background-color: #90dcff;
   color: #000;
 }
 
@@ -305,7 +338,7 @@ p a:hover{
     text-shadow: 2px 2px 15px #ff006a;
     color: #ff627df8;
     animation-name: fadeIn; /* The name of your keyframe animation */
-    animation-duration: 2s; /* How long the animation takes */
+    animation-duration: 1.1s; /* How long the animation takes */
     animation-timing-function: ease-in; /* The speed curve of the animation */
     animation-fill-mode: forwards; /* Keeps the final state of the animation */
 

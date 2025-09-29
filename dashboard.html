@@ -3,8 +3,9 @@
 <head>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 	<title>Contact Manager</title>
 	<script type="text/javascript" src="js/code.js"></script>
 	<script type="text/javascript" src="js/dashboard.js"></script>
@@ -24,7 +25,7 @@
 <h2 id="userName"></h2>
 <button onclick="doLogout()">Logout</button>
 
-<h3>Add Contact</h3>
+<h3 id="contactTitles">ADD CONTACT</h3>
 <form id="contactForm" onsubmit="event.preventDefault(); addContact();">
     <input id="contactFirstName" placeholder="First Name" required>
     <input id="contactLastName" placeholder="Last Name" required>
@@ -33,7 +34,7 @@
     <button type="submit">Add Contact</button>
 </form>
 
-<h3>Search Contact</h3>
+<h3 id="contactTitles">SEARCH CONTACTS</h3>
 <input id="searchInput" placeholder="Search..." oninput="searchContact()">
 
 <table id="contactTable" border="1" cellpadding="5" cellspacing="0">
