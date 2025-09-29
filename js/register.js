@@ -9,7 +9,7 @@ function doRegister() {
     const resultDiv = document.getElementById("registerResult");
 
     resultDiv.innerText = "";
-
+    
     // Input validation
     if (!firstName || !lastName || !login || !password) {
         resultDiv.innerText = "All fields are required!";
