@@ -9,10 +9,10 @@ function doRegister() {
     const login = document.getElementById("registerLogin").value.trim();
     const password = document.getElementById("registerPassword").value.trim();
     const resultDiv = document.getElementById("registerResult");
-
+    
     resultDiv.innerText = "";
     
-    // Input validation
+    //Input validation
     if (!firstName || !lastName || !login || !password) {
         resultDiv.innerText = "All fields are required!";
         return;

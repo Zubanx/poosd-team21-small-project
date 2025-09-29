@@ -74,27 +74,42 @@ function addContact() {
 
 // EDIT CONTACT FUNCTION //
 
-function editContact(contactId) {
-    let first = prompt("Enter new first name:");
-    let last = prompt("Enter new last name:");
-    let phone = prompt("Enter new phone:");
-    let email = prompt("Enter new email:");
+    function editContact(contactId) {
+        
+        const modal =  document.querySelector('#modal');
+        const openModal = document.querySelector('.open-button');
+        const closeModal = document.querySelector('.close-button');
+            
+        openModal.addEventListener('click', () => {
+            modal.showModal();
+        });
 
-    let tmp = { id: contactId, firstName: first, lastName: last, phone: phone, email: email };
-    let jsonPayload = JSON.stringify(tmp);
-    const url = urlBase + '/EditContact.' + extension;
+        closeModal.addEventListener('click', () =>{
+            modal.close();
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        });
 
-    xhr.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            loadContacts();
-        }
-    };
-    xhr.send(jsonPayload);
-}
+        
+        let first = prompt("Enter new first name:");
+        let last = prompt("Enter new last name:");
+        let phone = prompt("Enter new phone:");
+        let email = prompt("Enter new email:");
+
+        let tmp = { id: contactId, firstName: first, lastName: last, phone: phone, email: email };
+        let jsonPayload = JSON.stringify(tmp);
+        const url = urlBase + '/EditContact.' + extension;
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+        xhr.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                loadContacts();
+            }
+        };
+        xhr.send(jsonPayload);
+    }
 
 // DELETE CONTACT FUNCTION //
 
