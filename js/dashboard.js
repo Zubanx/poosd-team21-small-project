@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    readSession(); // check login
-    loadContacts(); // load all contacts for user
+    readSession(); //check login
+    loadContacts(); //load all contacts for user
 });
 
-// -------------------- LOAD CONTACTS -------------------- //
+// LOAD CONTACT FUNCTION //
 
 function loadContacts(searchTerm = "") {
     const url = urlBase + '/SearchContact.' + extension;
@@ -34,11 +34,11 @@ function loadContacts(searchTerm = "") {
                     let row = table.insertRow();
                     row.insertCell(0).innerText = contact["First Name"];
                     row.insertCell(1).innerText = contact["Last Name"];
-                    row.insertCell(2).innerText = contact["Phone"];
+                    row.insertCell(2).innerText = contact["Phone"] ||contact["Number"] || contact["phone"];
                     row.insertCell(3).innerText = contact["Email"];
                     row.insertCell(4).innerHTML = `
-                        <button onclick="editContact(${contact.ID})">Edit</button>
-                        <button onclick="deleteContact(${contact.ID})">Delete</button>
+                        <button class = "editButton" onclick="editContact(${contact.ID})">Edit</button>
+                        <button class = "deleteButton" onclick="deleteContact(${contact.ID})">Delete</button>
                     `;
                 });
             }
@@ -47,7 +47,7 @@ function loadContacts(searchTerm = "") {
     xhr.send(jsonPayload);
 }
 
-// -------------------- ADD CONTACT -------------------- //
+// ADD CONTACT FUNCTION //
 
 function addContact() {
     let first = document.getElementById("contactFirstName").value;
@@ -72,7 +72,7 @@ function addContact() {
     xhr.send(jsonPayload);
 }
 
-// -------------------- EDIT CONTACT -------------------- //
+// EDIT CONTACT FUNCTION //
 
 function editContact(contactId) {
     let first = prompt("Enter new first name:");
@@ -96,7 +96,7 @@ function editContact(contactId) {
     xhr.send(jsonPayload);
 }
 
-// -------------------- DELETE CONTACT -------------------- //
+// DELETE CONTACT FUNCTION //
 
 function deleteContact(contactId) {
     if (!confirm("Are you sure you want to delete this contact?")) return;
@@ -118,7 +118,7 @@ function deleteContact(contactId) {
 }
 
 
-// -------------------- SEARCH CONTACT -------------------- //
+// SEARCH CONTACT FUNCTION //
 
 function searchContact() {
     let term = document.getElementById("searchInput").value;

@@ -1,6 +1,8 @@
 const urlBase = 'http://159.65.246.16/API';
 const extension = 'php';
 
+
+//DO REGISTER FUNCTION
 function doRegister() {
     const firstName = document.getElementById("registerFirstName").value.trim();
     const lastName = document.getElementById("registerLastName").value.trim();

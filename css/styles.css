@@ -294,23 +294,23 @@ p a:hover{
 }
 
 #contactTable button {
-  padding: 4px 10px;
-  margin: 2px;
-  font-size: 14px;
+  padding: 10px 20px;
+  margin: 4px;
+  font-size: 20px;
   border-radius: 5px;
+  border-color: #000;
   cursor: pointer;
-  color: #000000
+  color: #ffffff
 }
 
 #contactTable{
-    color:#000000;
-
+    color:#ffffff;
 }
 
 #contactTitles{
     display: inline-block;
     color: #000000;
-    font-size: 25px;
+    font-size: 30px;
     font-weight: bold;
     font-family: "Quantico", sans-serif;
     width: 100%;
@@ -331,6 +331,7 @@ p a:hover{
 /* Style the form container */
 form {
     box-shadow: 0px 5px 30px rgba(0, 0, 0, .2);
+    
 }
 
 #contactTable button:hover {
@@ -341,19 +342,19 @@ form {
 #contactTable{
     font-family: "Quantico", sans-serif;
     font-size: 30px;
+    border: #000000;
+    background-color: #0f92c5;
+    color:#ffffff
 }
 
 #contactFirstName{
     font-family: "Quantico", sans-serif;
     font-size: 20px;
-
 }
 
 #contactLastName{
-        font-family: "Quantico", sans-serif;
+    font-family: "Quantico", sans-serif;
     font-size: 20px;
-
-    
 }
 
 #contactPhone{
@@ -363,7 +364,7 @@ form {
 }
 
 #contactEmail{
-        font-family: "Quantico", sans-serif;
+    font-family: "Quantico", sans-serif;
     font-size: 20px;
 
     
@@ -374,7 +375,6 @@ form {
     font-size: 20px;
     
 }
-
 
 #registerResult{
     display: inline-block;
@@ -387,8 +387,6 @@ form {
     animation-duration: 1.1s; /* How long the animation takes */
     animation-timing-function: ease-in; /* The speed curve of the animation */
     animation-fill-mode: forwards; /* Keeps the final state of the animation */
-
-
 }
 
 @keyframes fadeIn {
@@ -398,4 +396,40 @@ form {
   100% {
     opacity: 1;
   }
+}
+
+
+
+/* General style for all action buttons */
+.editButton,
+.deleteButton {
+    padding: 40px 40px;   /* makes the button bigger */
+    font-size: 50px;      /* increases text size */
+    border: none;
+    font-size: 50px;
+    font-family: "Quantico", sans-serif;
+    font-weight: 501;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+}
+
+/* Edit button specific style */
+.editButton {
+  background-color: #4CAF50; /* green */
+  color: white;
+}
+
+.editButton:hover {
+  background-color: #45a049;
+}
+
+/* Delete button specific style */
+.deleteButton {
+  background-color: #f44336; /* red */
+  color: white;
+}
+
+.deleteButton:hover {
+  background-color: #da190b;
 }
