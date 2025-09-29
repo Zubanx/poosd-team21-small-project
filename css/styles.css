@@ -1,10 +1,18 @@
+.audiowide-regular {
+  font-family: "Audiowide", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
 body 
 {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
+    min-height: 90vh;
     background-color: #ffc400;
     color: #ffffff;
 }
@@ -19,14 +27,26 @@ body
 /*title text*/
 #title 
 {
-    font-size: 70px;
-    font-family: "Special Gothic Condensed One", sans-serif;
+    font-size: 80px;
+    font-family: "Audiowide", sans-serif;
+    font-weight: 1500;
+    text-align: center;
+    font-style: normal;
+    color: #000000;
+}
+
+/*title text*/
+#title2 
+{
+    font-size: 50px;
+    font-family: "Quantico", sans-serif;
     font-weight: 750;
     text-align: center;
     margin-bottom: 20px; /* smaller space */
     font-style: normal;
     color: #000000;
 }
+
 
 /*login box*/
 #loginDiv
@@ -140,7 +160,7 @@ input[type="text"],input[type="password"]{
     margin: 5px auto;   
     margin-bottom: 30px;
     text-align: center;
-    font-family: "Special Gothic Condensed One", sans-serif;
+    font-family: "Quantico", sans-serif;
     font-weight: bold;
     color: #ffffff;
 }
@@ -267,24 +287,6 @@ p a:hover{
   color: #000;
 }
 
-
-/* Style for error messages */
-.error-message {
-  color: #fff;                /* text color */
-  background-color: #e74c3c;  /* red background */
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  text-align: center;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 #registerResult{
     display: inline-block;
     font-size: 30px;    
@@ -292,4 +294,19 @@ p a:hover{
     font-family: 'Special Gothic Condensed One', sans-serif;
     text-shadow: 2px 2px 15px #ff006a;
     color: #ff627df8;
+    animation-name: fadeIn; /* The name of your keyframe animation */
+    animation-duration: 2s; /* How long the animation takes */
+    animation-timing-function: ease-in; /* The speed curve of the animation */
+    animation-fill-mode: forwards; /* Keeps the final state of the animation */
+
+
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

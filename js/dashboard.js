@@ -58,7 +58,7 @@ function addContact() {
     let tmp = { firstName: first, lastName: last, phone: phone, email: email, userID: userId };
     let jsonPayload = JSON.stringify(tmp);
     const url = urlBase + '/AddContact.' + extension;
-    
+
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -106,7 +106,7 @@ function deleteContact(contactId) {
     const url = urlBase + '/DeleteContact.' + extension;
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, false);
+    xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     xhr.onreadystatechange = function() {
@@ -116,6 +116,7 @@ function deleteContact(contactId) {
     };
     xhr.send(jsonPayload);
 }
+
 
 // -------------------- SEARCH CONTACT -------------------- //
 
