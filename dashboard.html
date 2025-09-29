@@ -23,7 +23,7 @@
 <body>
 
 <h2 id="userName"></h2>
-<button onclick="doLogout()">Logout</button>
+<button id = "logoutButton" onclick="doLogout()">Logout</button>
 
 <h3 id="contactTitles">ADD CONTACT</h3>
 <form id="contactForm" onsubmit="event.preventDefault(); addContact();">
@@ -31,7 +31,7 @@
     <input id="contactLastName" placeholder="Last Name" required>
     <input id="contactPhone" placeholder="Phone">
     <input id="contactEmail" placeholder="Email">
-    <button type="submit">Add Contact</button>
+    <button id = "addContactButton" type="submit">Add Contact</button>
 </form>
 
 <h3 id="contactTitles">SEARCH CONTACTS</h3>

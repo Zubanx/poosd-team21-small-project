@@ -286,6 +286,13 @@ p a:hover{
     color: #ffc400;
 }
 
+#logoutButton{
+    font-family: "Quantico", sans-serif;
+    font-size: 20px;
+    width: 5%;
+
+}
+
 #contactTable button {
   padding: 4px 10px;
   margin: 2px;
@@ -303,7 +310,7 @@ p a:hover{
 #contactTitles{
     display: inline-block;
     color: #000000;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     font-family: "Quantico", sans-serif;
     width: 100%;
@@ -321,14 +328,55 @@ p a:hover{
     text-align: center;
 }
 
-#contactForm{
-    size: 50px;
+/* Style the form container */
+form {
+    background-color: #000000;
+    box-shadow: 0px 1px 30px rgba(0, 0, 0, 0.5);
+
 }
 
 #contactTable button:hover {
   background-color: #90dcff;
   color: #000;
 }
+
+#contactTable{
+    font-family: "Quantico", sans-serif;
+    font-size: 30px;
+}
+
+#contactFirstName{
+    font-family: "Quantico", sans-serif;
+    font-size: 20px;
+
+}
+
+#contactLastName{
+        font-family: "Quantico", sans-serif;
+    font-size: 20px;
+
+    
+}
+
+#contactPhone{
+        font-family: "Quantico", sans-serif;
+    font-size: 20px;
+
+}
+
+#contactEmail{
+        font-family: "Quantico", sans-serif;
+    font-size: 20px;
+
+    
+}
+
+#addContactButton{
+    font-family: "Quantico", sans-serif;
+    font-size: 20px;
+    
+}
+
 
 #registerResult{
     display: inline-block;
