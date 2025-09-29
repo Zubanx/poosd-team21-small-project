@@ -223,8 +223,6 @@ input[type="text"],input[type="password"]{
     text-align: center;
 }
 
-
-
 #logoutButton{
     width: 20%;
     margin-left: 40%;
@@ -236,22 +234,6 @@ select{
     margin-top: 2%;
     font-size: 0.75em;
     font-family: 'Montserrat', sans-serif;
-}
-
-#colorSearchResult{
-    display: none;
-}
-
-#colorAddResult{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    font-family: 'Montserrat', sans-serif;
-    color: #95060a;
 }
 
 p{
@@ -285,3 +267,29 @@ p a:hover{
   color: #000;
 }
 
+
+/* Style for error messages */
+.error-message {
+  color: #fff;                /* text color */
+  background-color: #e74c3c;  /* red background */
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+#registerResult{
+    display: inline-block;
+    font-size: 30px;    
+    text-align: center;
+    font-family: 'Special Gothic Condensed One', sans-serif;
+    text-shadow: 2px 2px 15px #ff006a;
+    color: #ff627df8;
+}
