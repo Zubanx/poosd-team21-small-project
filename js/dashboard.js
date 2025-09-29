@@ -37,8 +37,8 @@ function loadContacts(searchTerm = "") {
                     row.insertCell(2).innerText = contact["Phone"];
                     row.insertCell(3).innerText = contact["Email"];
                     row.insertCell(4).innerHTML = `
-                        <button onclick="EditContact(${contact.ID})">Edit</button>
-                        <button onclick="DeleteContact(${contact.ID})">Delete</button>
+                        <button onclick="editContact(${contact.ID})">Edit</button>
+                        <button onclick="deleteContact(${contact.ID})">Delete</button>
                     `;
                 });
             }
