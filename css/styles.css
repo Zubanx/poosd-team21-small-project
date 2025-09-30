@@ -258,15 +258,16 @@ select{
 }
 
 p{
-    font-size: 27px;
+    font-size: 35px;
     font-weight: 300;
     text-align: center;
     margin-bottom: 10px;
+    text-decoration: double ;
 }
 
 p a{
-    color:#ffc400;
-    text-decoration: none;
+    color:#ffe100;
+    text-decoration: underline;
 }
 
 p a:hover{
