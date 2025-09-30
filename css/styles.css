@@ -71,26 +71,6 @@ body
     text-align: center;
 }
 
-/*loggedin boxes*/
-#loggedInDiv
-{
-    width: 100%;
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 50px;
-    background-color: #b2b2b2;
-}
-
-#accessUIDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
-}
-
 .buttons
 {
     display: block;
@@ -406,7 +386,7 @@ form {
 
 /* Edit button specific style */
 .editButton {
-  background-color: #4CAF50; /* green */
+  background-color: #1b571d; /* green */
   color: white;
 }
 
@@ -416,7 +396,7 @@ form {
 
 /* Delete button specific style */
 .deleteButton {
-  background-color: #f44336; /* red */
+  background-color: #640701; /* red */
   color: white;
 }
 
