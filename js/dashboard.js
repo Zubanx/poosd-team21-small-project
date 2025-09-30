@@ -72,47 +72,65 @@ function addContact() {
     xhr.send(jsonPayload);
 }
 
-// EDIT CONTACT FUNCTION //
+// EDIT CONTACT (open modal and populate fields)
+function editContact(contactId) {
+    const modal = document.getElementById("modal");
+    const closeModal = document.querySelector(".close-button");
 
-    function editContact(contactId) {
-        
-        const modal =  document.querySelector('#modal');
-        const openModal = document.querySelector('.open-button');
-        const closeModal = document.querySelector('.close-button');
-            
-        openModal.addEventListener('click', () => {
-            modal.showModal();
-        });
+    // Find contact data from the table row
+    const row = [...document.querySelectorAll("#contactTable tr")]
+        .find(r => r.querySelector("button")?.onclick.toString().includes(`editContact(${contactId})`));
 
-        closeModal.addEventListener('click', () =>{
+    if (!row) return;
+
+    const cells = row.getElementsByTagName("td");
+    const first = cells[0].innerText;
+    const last = cells[1].innerText;
+    const phone = cells[2].innerText;
+    const email = cells[3].innerText;
+
+    // Pre-fill modal inputs
+    document.getElementById("editFirstName").value = first;
+    document.getElementById("editLastName").value = last;
+    document.getElementById("editPhone").value = phone;
+    document.getElementById("editEmail").value = email;
+    document.getElementById("editContactId").value = contactId;
+
+    // Open modal
+    modal.showModal();
+
+    // Close handler
+    closeModal.onclick = () => modal.close();
+}
+
+// SUBMIT EDIT MODAL (save changes)
+function submitEditModal() {
+    const modal = document.getElementById("modal");
+
+    let contactId = document.getElementById("editContactId").value;
+    let first = document.getElementById("editFirstName").value;
+    let last = document.getElementById("editLastName").value;
+    let phone = document.getElementById("editPhone").value;
+    let email = document.getElementById("editEmail").value;
+
+    let tmp = { id: contactId, firstName: first, lastName: last, phone: phone, email: email };
+    let jsonPayload = JSON.stringify(tmp);
+    const url = urlBase + '/EditContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            loadContacts();
             modal.close();
-
-        });
-
-        
-        let first = prompt("Enter new first name:");
-        let last = prompt("Enter new last name:");
-        let phone = prompt("Enter new phone:");
-        let email = prompt("Enter new email:");
-
-        let tmp = { id: contactId, firstName: first, lastName: last, phone: phone, email: email };
-        let jsonPayload = JSON.stringify(tmp);
-        const url = urlBase + '/EditContact.' + extension;
-
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-        xhr.onreadystatechange = function() {
-            if (this.readyState === 4 && this.status === 200) {
-                loadContacts();
-            }
-        };
-        xhr.send(jsonPayload);
-    }
+        }
+    };
+    xhr.send(jsonPayload);
+}
 
 // DELETE CONTACT FUNCTION //
-
 function deleteContact(contactId) {
     if (!confirm("Are you sure you want to delete this contact?")) return;
 

@@ -65,7 +65,7 @@ body
     padding: 25px;
     place-items: center;
     border-radius: 10px;
-    background-color: #0f91c5;
+    background-color: #00648b;
     font-family: "Special Gothic Condensed One", sans-serif;
     box-shadow: 0 0 40px rgba(0,0,0, 0.5);
     text-align: center;
@@ -95,7 +95,7 @@ body
 {
     display: block;
     font-size: 30px;
-    background: #00b2d1;
+    background: #0096b1;
     color: #ffffff;
     width: 50%;
     border-radius: 6px;
@@ -110,6 +110,7 @@ body
 
 .buttons:hover{
     background-color: #fdc200;
+    text-decoration: underline;
     color: #000000;
     opacity: 100%;
 }
@@ -422,9 +423,79 @@ form {
   background-color: #da190b;
 }
 
+/* === Modal Styling === */
+dialog.modal {
+  border: none;
+  border-radius: 10px;
+  padding: 20px 30px;
+  max-width: 400px;
+  width: 90%;
+  background: #fff;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  font-family: "Montserrat", sans-serif;
+  animation: fadeIn 0.2s ease-in-out;
+}
 
-.modal{
-    padding: 1em;
-    max-width: 50ch;
-    margin: 0 0 0.5rem 0;
+dialog::backdrop {
+  background: rgba(0,0,0,0.5);
+}
+
+.modal h2 {
+  margin-top: 0;
+  font-family: "Quantico", sans-serif;
+  font-size: 30px;
+  color: #333;
+  text-align: center;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: "Quantico", sans-serif;
+
+}
+
+.modal button {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s ease-in-out;
+  font-family: "Quantico", sans-serif;
+  font-weight: 1000;
+
+}
+
+.modal button[type="submit"] {
+  background: #4CAF50;
+  color: white;
+}
+
+.modal button[type="submit"]:hover {
+  background: #45a049;
+}
+
+.modal .close-button {
+  background: #f44336;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.modal .close-button:hover {
+  background: #e53935;
+}
+
+/* Small fade animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
