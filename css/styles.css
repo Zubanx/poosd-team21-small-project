@@ -430,7 +430,7 @@ dialog.modal {
   padding: 20px 30px;
   max-width: 400px;
   width: 90%;
-  background: #fff;
+  background: #0f92c5;
   box-shadow: 0 8px 25px rgba(0,0,0,0.25);
   font-family: "Montserrat", sans-serif;
   animation: fadeIn 0.2s ease-in-out;
@@ -444,7 +444,7 @@ dialog::backdrop {
   margin-top: 0;
   font-family: "Quantico", sans-serif;
   font-size: 30px;
-  color: #333;
+  color: #ffffff;
   text-align: center;
 }
 
@@ -498,4 +498,38 @@ dialog::backdrop {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+#deleteModal p {
+    font-size: 30px;
+    font-family: "Quantico", sans-serif;
+    color:#ffffff;
+    margin: 10px 0 20px;
+    text-align: center;
+}
+
+.modal-buttons {
+  justify-content: space-between;
+  margin: auto;
+  gap: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
+button.delete-confirm {
+  background: #ff0000;
+  color: white;
+  
+}
+
+button.delete-confirm:hover {
+  background: #ffffff;
+  color: #940f0f;  
+}
+
+#cancelButton{
+    background: #175c14;
+    color: #ffffff;  
 }

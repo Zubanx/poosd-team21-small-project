@@ -132,9 +132,26 @@ function submitEditModal() {
 
 // DELETE CONTACT FUNCTION //
 function deleteContact(contactId) {
-    if (!confirm("Are you sure you want to delete this contact?")) return;
+  contactToDelete = contactId; // store ID
+  const deleteModal = document.getElementById("deleteModal");
+  deleteModal.showModal();
+}
 
-    let tmp = { ID: contactId };
+// attach modal event listeners once DOM is ready
+document.addEventListener("DOMContentLoaded", () => {
+  const deleteModal = document.getElementById("deleteModal");
+  const cancelBtn = deleteModal.querySelector(".close-button");
+  const confirmBtn = document.getElementById("confirmDelete");
+
+  cancelBtn.addEventListener("click", () => {
+    deleteModal.close();
+    contactToDelete = null;
+  });
+  
+  confirmBtn.addEventListener("click", () => {
+    if (!contactToDelete) return;
+
+    let tmp = { ID: contactToDelete };
     let jsonPayload = JSON.stringify(tmp);
     const url = urlBase + '/DeleteContact.' + extension;
 
@@ -143,12 +160,15 @@ function deleteContact(contactId) {
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     xhr.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            loadContacts();
-        }
+      if (this.readyState === 4 && this.status === 200) {
+        loadContacts();
+        deleteModal.close();
+        contactToDelete = null;
+      }
     };
     xhr.send(jsonPayload);
-}
+  });
+});
 
 
 // SEARCH CONTACT FUNCTION //
